@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 import api from '../api'
 
 export default function Tenants() {
@@ -7,11 +7,7 @@ export default function Tenants() {
     const [loading, setLoading] = useState(true)
     const [page, setPage] = useState(1)
 
-    useEffect(() => {
-        fetchTenants()
-    }, [page])
-
-    async function fetchTenants() {
+    const fetchTenants = useCallback(async () => {
         setLoading(true)
         try {
             const { data } = await api.get(`/tenants?page=${page}&limit=10`)
@@ -24,7 +20,11 @@ export default function Tenants() {
         } finally {
             setLoading(false)
         }
-    }
+    }, [page])
+
+    useEffect(() => {
+        fetchTenants()
+    }, [fetchTenants])
 
     return (
         <div className="container mx-auto px-4 py-8">
@@ -58,15 +58,15 @@ export default function Tenants() {
                                         <td className="px-6 py-4 text-gray-600 font-mono text-sm">{tenant.subdomain}</td>
                                         <td className="px-6 py-4">
                                             <span className={`px-2 py-1 rounded-full text-xs font-medium ${tenant.status === 'active' ? 'bg-green-100 text-green-700' :
-                                                    tenant.status === 'suspended' ? 'bg-red-100 text-red-700' : 'bg-yellow-100 text-yellow-700'
+                                                tenant.status === 'suspended' ? 'bg-red-100 text-red-700' : 'bg-yellow-100 text-yellow-700'
                                                 }`}>
                                                 {tenant.status}
                                             </span>
                                         </td>
                                         <td className="px-6 py-4">
                                             <span className={`px-2 py-1 rounded-full text-xs font-medium border ${tenant.subscriptionPlan === 'enterprise' ? 'bg-purple-50 text-purple-700 border-purple-200' :
-                                                    tenant.subscriptionPlan === 'pro' ? 'bg-blue-50 text-blue-700 border-blue-200' :
-                                                        'bg-gray-50 text-gray-600 border-gray-200'
+                                                tenant.subscriptionPlan === 'pro' ? 'bg-blue-50 text-blue-700 border-blue-200' :
+                                                    'bg-gray-50 text-gray-600 border-gray-200'
                                                 }`}>
                                                 {tenant.subscriptionPlan}
                                             </span>
