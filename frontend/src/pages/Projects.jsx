@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useCallback } from 'react'
 import { Link } from 'react-router-dom'
 import api from '../api'
 
@@ -10,7 +10,7 @@ export default function Projects() {
   const [form, setForm] = useState({ name: '', description: '', status: 'active' })
   const [loading, setLoading] = useState(false)
 
-  async function load() {
+  const load = useCallback(async () => {
     setLoading(true)
     const q = new URLSearchParams()
     if (filter) q.set('status', filter)
@@ -18,8 +18,9 @@ export default function Projects() {
     const r = await api.get('/projects' + (q.toString() ? `?${q.toString()}` : ''))
     setProjects(r.data.data.projects || [])
     setLoading(false)
-  }
-  useEffect(() => { load() }, [filter, search])
+  }, [filter, search])
+
+  useEffect(() => { load() }, [load])
 
   async function create() {
     await api.post('/projects', form)
