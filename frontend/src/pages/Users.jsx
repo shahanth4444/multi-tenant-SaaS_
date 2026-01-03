@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useCallback } from 'react'
 import api from '../api'
 
 export default function Users({ me }) {
@@ -9,7 +9,7 @@ export default function Users({ me }) {
   const [form, setForm] = useState({ email: '', fullName: '', password: '', role: 'user' })
   const [loading, setLoading] = useState(false)
 
-  async function load() {
+  const load = useCallback(async () => {
     setLoading(true)
     const tId = me?.tenant?.id
     const qs = new URLSearchParams()
@@ -18,8 +18,9 @@ export default function Users({ me }) {
     const r = await api.get(`/tenants/${tId}/users${qs.toString() ? `?${qs.toString()}` : ''}`)
     setUsers(r.data.data.users || [])
     setLoading(false)
-  }
-  useEffect(() => { if (me?.tenant?.id) load() }, [me?.tenant?.id, search, role])
+  }, [me?.tenant?.id, search, role])
+
+  useEffect(() => { if (me?.tenant?.id) load() }, [me?.tenant?.id, load])
 
   async function add() {
     const tId = me?.tenant?.id
