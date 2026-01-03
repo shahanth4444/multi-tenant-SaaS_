@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useCallback } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import api from '../api'
 
@@ -9,15 +9,16 @@ export default function ProjectDetails() {
   const [taskForm, setTaskForm] = useState({ title: '', description: '', priority: 'medium' })
   const [loading, setLoading] = useState(true)
 
-  async function load() {
+  const load = useCallback(async () => {
     setLoading(true)
     const p = await api.get('/projects?limit=100')
     setProject(p.data.data.projects.find(x => x.id === projectId) || null)
     const t = await api.get(`/projects/${projectId}/tasks`)
     setTasks(t.data.data.tasks || [])
     setLoading(false)
-  }
-  useEffect(() => { load() }, [projectId])
+  }, [projectId])
+
+  useEffect(() => { load() }, [load])
 
   async function addTask() {
     await api.post(`/projects/${projectId}/tasks`, taskForm)
