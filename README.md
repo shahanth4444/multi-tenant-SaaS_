@@ -314,7 +314,7 @@ erDiagram
 1. **Clone the repository**
 ```bash
 git clone https://github.com/shahanth4444/multi-tenant-SaaS_.git
-cd multi-tenant-SaaS_
+cd multi-tenant-saas
 ```
 
 2. **Start with Docker Compose**
