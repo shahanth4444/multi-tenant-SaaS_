@@ -7,7 +7,15 @@ export default function Dashboard({ me }) {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    api.get('/projects?limit=5').then(r => setProjects(r.data.data.projects || []))
+    const fetchProjects = async () => {
+      try {
+        const r = await api.get('/projects?limit=5')
+        setProjects(r.data.data.projects || [])
+      } catch (error) {
+        console.error('Failed to fetch projects:', error)
+      }
+    }
+    fetchProjects()
   }, [])
 
   useEffect(() => {
