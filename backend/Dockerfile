@@ -3,11 +3,11 @@ FROM node:20-alpine
 
 WORKDIR /app
 
-COPY package.json package-lock.json* ./
+COPY backend/package.json backend/package-lock.json* ./
 RUN apk add --no-cache curl \
- && npm install --production
+    && npm install --production
 
-COPY src ./src
+COPY backend/src ./src
 COPY submission.json /app/submission.json
 
 ENV NODE_ENV=production
