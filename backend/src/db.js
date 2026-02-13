@@ -2,13 +2,18 @@ import pg from 'pg';
 import { config } from './config.js';
 
 const { Pool } = pg;
-export const pool = new Pool({
-  host: config.db.host,
-  port: config.db.port,
-  database: config.db.database,
-  user: config.db.user,
-  password: config.db.password,
-});
+
+// Support DATABASE_URL (for Render) or individual DB variables
+export const pool = process.env.DATABASE_URL
+  ? new Pool({ connectionString: process.env.DATABASE_URL })
+  : new Pool({
+    host: config.db.host,
+    port: config.db.port,
+    database: config.db.database,
+    user: config.db.user,
+    password: config.db.password,
+  });
+
 
 export async function query(text, params) {
   return pool.query(text, params);
