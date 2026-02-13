@@ -1,11 +1,5 @@
-```json
 {
     "version": 2,
-    "buildCommand": "npm run build",
-    "outputDirectory": "dist",
-    "devCommand": "npm run dev",
-    "installCommand": "npm install",
-    "framework": "vite",
     "builds": [
         {
             "src": "package.json",
@@ -21,19 +15,9 @@
             "dest": "/index.html"
         }
     ],
-    "rewrites": [
-        {
-            "source": "/(.*)",
-            "destination": "/index.html"
-        }
-    ],
-    "env": {
-        "VITE_API_URL": "@api_url"
-    },
     "build": {
         "env": {
             "VITE_API_URL": "https://multi-tenant-saas-1.onrender.com/api"
         }
     }
 }
-```
