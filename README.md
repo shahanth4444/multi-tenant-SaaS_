@@ -7,6 +7,32 @@
 [![React](https://img.shields.io/badge/React-18.2-blue.svg)](https://reactjs.org/)
 [![PostgreSQL](https://img.shields.io/badge/PostgreSQL-15-blue.svg)](https://www.postgresql.org/)
 
+## 🌐 Live Demo
+
+**🚀 Production Deployment:**
+- **Frontend:** [https://multi-tenant-saass.vercel.app](https://multi-tenant-saass.vercel.app)
+- **Backend API:** [https://multi-tenant-saas-1.onrender.com](https://multi-tenant-saas-1.onrender.com)
+- **Health Check:** [https://multi-tenant-saas-1.onrender.com/api/health](https://multi-tenant-saas-1.onrender.com/api/health)
+
+**🔑 Test Credentials:**
+
+*Super Admin:*
+- Email: `superadmin@system.com`
+- Password: `Admin@123`
+- Subdomain: (leave empty or use "demo")
+
+*Tenant Admin (Demo Company):*
+- Email: `admin@demo.com`
+- Password: `Demo@123`
+- Subdomain: `demo`
+
+*Regular Users:*
+- User 1: `user1@demo.com` / `User@123`
+- User 2: `user2@demo.com` / `User@123`
+
+> **Note:** Free tier hosting - first request may take 50+ seconds to spin up. Subsequent requests are fast.
+
+
 ## 📋 Table of Contents
 
 - [Overview](#overview)
