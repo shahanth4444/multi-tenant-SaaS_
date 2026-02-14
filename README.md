@@ -2,7 +2,6 @@
 
 > Production-ready multi-tenant SaaS boilerplate with complete data isolation, role-based access control, subscription management, and modern UI
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 [![Node.js](https://img.shields.io/badge/Node.js-18+-green.svg)](https://nodejs.org/)
 [![React](https://img.shields.io/badge/React-18.2-blue.svg)](https://reactjs.org/)
 [![PostgreSQL](https://img.shields.io/badge/PostgreSQL-15-blue.svg)](https://www.postgresql.org/)
@@ -688,22 +687,11 @@ PORT=5000
 FRONTEND_URL=http://frontend:3000
 ```
 
-## 📝 License
-
-This project is licensed under the MIT License.
-
 ## 👤 Author
 
 **Shahanth**
 - GitHub: [@shahanth4444](https://github.com/shahanth4444)
 - Email: shahanthkarri@gmail.com
 
-## 🙏 Acknowledgments
-
-- Built with modern web technologies
-- Inspired by enterprise SaaS architectures
-- Designed for scalability and maintainability
-
 ---
 
-**Made with ❤️ for the SaaS community**
